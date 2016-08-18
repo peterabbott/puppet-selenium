@@ -10,11 +10,12 @@ describe 'selenium::node', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += " -hub #{p[:hub]} -log /opt/selenium/log/seleniumnode.log"
 
     it do
       should contain_class('selenium')
       should contain_selenium__config('node').with({
-        'options' => "#{p[:options]} -hub #{p[:hub]}",
+        'options' => "#{p[:options]}",
         'initsystem' => "init.d",
       })
       should contain_class('selenium::node')
@@ -29,13 +30,14 @@ describe 'selenium::node', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += " -hub #{p[:hub]} -log /opt/selenium/log/seleniumnode.log"
 
     it do
       should contain_class('selenium')
       should contain_selenium__config('node').with({
-                                                       'options' => "#{p[:options]} -hub #{p[:hub]}",
-                                                       'initsystem' => "systemd",
-                                                   })
+           'options' => "#{p[:options]}",
+           'initsystem' => "systemd",
+       })
       should contain_class('selenium::node')
     end
   end

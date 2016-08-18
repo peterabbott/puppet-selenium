@@ -8,6 +8,7 @@ describe 'selenium::hub', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += ' -log /opt/selenium/log/seleniumhub.log'
 
     it do
       should contain_class('selenium')
@@ -25,6 +26,7 @@ describe 'selenium::hub', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += ' -log /opt/selenium/log/seleniumhub.log'
 
     it do
       should contain_class('selenium')
@@ -40,7 +42,7 @@ describe 'selenium::hub', :type => :class do
     let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
 
     context 'no params' do
-      it_behaves_like 'hub_with_initd', {}
+      it_behaves_like 'hub_with_initd', { }
     end
 
     context 'options => -foo' do

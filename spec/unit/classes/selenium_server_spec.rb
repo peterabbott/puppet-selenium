@@ -10,6 +10,7 @@ describe 'selenium::server', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += ' -log /opt/selenium/log/seleniumserver.log'
 
     it do
       should contain_class('selenium')
@@ -29,6 +30,8 @@ describe 'selenium::server', :type => :class do
     }
 
     p.merge!(params) if params
+    p[:options] += ' -log /opt/selenium/log/seleniumserver.log'
+
 
     it do
       should contain_class('selenium')
