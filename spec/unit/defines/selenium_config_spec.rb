@@ -160,7 +160,7 @@ describe 'selenium::config', :type => :define do
   end
 
   context 'for osfamily RedHat 7' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7, :operatingsystem => 'RedHat' }}
 
     context "server" do
       let(:title) { 'server' }
@@ -246,7 +246,7 @@ describe 'selenium::config', :type => :define do
   end
 
   context 'for osfamily RedHat 6' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6, :operatingsystem => 'RedHat'}}
 
     context "server" do
       let(:title) { 'server' }
@@ -329,7 +329,7 @@ describe 'selenium::config', :type => :define do
 
   context 'for osfamily Debian' do
     let(:title) { 'server' }
-    let(:facts) {{ :osfamily => 'Debian', :operatingsystemmajrelease => 8 }}
+    let(:facts) {{ :osfamily => 'Debian', :operatingsystemmajrelease => 8, :operatingsystem => 'Debian' }}
     let :pre_condition do
       "include selenium"
     end

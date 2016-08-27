@@ -43,7 +43,7 @@ describe 'selenium::node', :type => :class do
   end
 
   context 'for osfamily RedHat 6' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6, :operatingsystem => 'RedHat' }}
 
     context 'no params' do
       it_behaves_like 'node_with_initd', {}
@@ -102,7 +102,7 @@ describe 'selenium::node', :type => :class do
   end
 
   context 'for osfamily RedHat 7' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7, :operatingsystem => 'RedHat' }}
 
     context 'no params' do
       it_behaves_like 'node_with_systemd', {}

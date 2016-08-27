@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'selenium::params', :type => :class do
 
   context 'for osfamily RedHat 6 ' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 6, :operatingsystem => 'RedHat' }}
 
     it {
       should contain_class('selenium::params')
@@ -11,7 +11,7 @@ describe 'selenium::params', :type => :class do
   end
 
   context 'for osfamily RedHat 7' do
-    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7 }}
+    let(:facts) {{ :osfamily => 'RedHat', :operatingsystemmajrelease => 7, :operatingsystem => 'RedHat' }}
 
     it {
       should contain_class('selenium::params')
@@ -20,7 +20,7 @@ describe 'selenium::params', :type => :class do
   end
 
   context 'for osfamily Debian' do
-    let(:facts) {{ :osfamily => 'Debian' }}
+    let(:facts) {{ :osfamily => 'Debian', :operatingsystem => 'Debian' }}
 
     it {
       should contain_class('selenium::params')
