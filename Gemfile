@@ -23,6 +23,7 @@ group :development, :test do
   gem 'rspec-puppet', '~> 2.2',   :require => false
   gem 'metadata-json-lint',       :require => false
   gem 'json', '=1.8.3', :platforms => 'ruby_18'
+  gem 'json_pure', '=1.8.3', :platforms => 'ruby_18'
 end
 
 group :beaker do
