@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 if puppetversion = ENV['PUPPET_GEM_VERSION']
   gem 'puppet', puppetversion, :require => false
 else
-  gem 'puppet', :require => false
+  gem 'puppet', '<=4.5.3', :require => false
 end
 
 if facterversion = ENV['FACTER_GEM_VERSION']
@@ -22,7 +22,6 @@ group :development, :test do
   gem 'rspec-puppet', '~> 2.2',   :require => false
   gem 'metadata-json-lint',       :require => false
   gem 'json', '=1.8.3', :platforms => 'ruby_18'
-  gem 'json_pure', '=2.0.1', :platforms => 'ruby_18'
 end
 
 group :beaker do
