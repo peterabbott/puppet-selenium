@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 if puppetversion = ENV['PUPPET_GEM_VERSION']
   gem 'puppet', puppetversion, :require => false
 else
-  gem 'puppet', '<=4.5.3', :require => false
+  gem 'puppet', :require => false
 end
 
 if facterversion = ENV['FACTER_GEM_VERSION']
@@ -16,7 +16,8 @@ group :development, :test do
   gem 'rake',                     :require => false
   # https://github.com/rspec/rspec-core/issues/1864
   gem 'rspec', '< 3.2.0', {"platforms"=>["ruby_18"]}
-  gem 'puppetlabs_spec_helper',   :require => false
+  # the newer versions have removed the default facts which breaks all the tests
+  gem 'puppetlabs_spec_helper', '<= 1.1.1',   :require => false
   gem 'puppet-lint', '>= 1.1.0',  :require => false
   gem 'puppet-syntax',            :require => false
   gem 'rspec-puppet', '~> 2.2',   :require => false
