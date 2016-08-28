@@ -28,7 +28,7 @@ describe 'selenium::server class' do
     it { should be_mode 755 }
   end
 
-  %w[server_stdout.log server_stderr.log].each do |file|
+  %w[seleniumserver.log].each do |file|
     describe file("/opt/selenium/log/#{file}") do
       it { should be_file }
       it { should be_owned_by 'selenium' }

@@ -28,7 +28,7 @@ describe 'selenium::node class' do
     it { should be_mode 755 }
   end
 
-  %w[node_stdout.log node_stderr.log].each do |file|
+  %w[seleniumhub.log].each do |file|
     describe file("/opt/selenium/log/#{file}") do
       it { should be_file }
       it { should be_owned_by 'selenium' }
@@ -47,7 +47,7 @@ describe 'selenium::node class' do
   end
 
   describe process('java') do
-    its(:args) { should match %|-Dwebdriver.enable.native.events=1 -role node -hub http://localhost:4444/grid/register| }
+    its(:args) { should match %|-Dwebdriver.enable.native.events=1 -role node -hub http://localhost:4444/grid/register -log /opt/selenium/log/seleniumnode.log| }
     it { should be_running }
   end
 
