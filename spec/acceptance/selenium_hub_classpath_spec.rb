@@ -30,7 +30,7 @@ describe 'selenium::hub class with classpath set' do
     it { should be_mode 755 }
   end
 
-  %w[seleniumhub.lob].each do |file|
+  %w[seleniumhub.log].each do |file|
     describe file("/opt/selenium/log/#{file}") do
       it { should be_file }
       it { should be_owned_by 'selenium' }
