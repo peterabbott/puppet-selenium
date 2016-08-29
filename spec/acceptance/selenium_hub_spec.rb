@@ -42,11 +42,6 @@ describe 'selenium::hub class' do
       it { should be_file }
       it { should be_owned_by 'selenium' }
       it { should be_grouped_into 'selenium' }
-      # if fact('operatingsystem') == 'Ubuntu'
-      #   it { should be_mode 664 }
-      # else
-      #   it { should be_mode 644 }
-      # end
       it { should be_mode 644 }
     end
   end
