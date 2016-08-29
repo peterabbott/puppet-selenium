@@ -21,11 +21,20 @@ describe 'selenium::hub class' do
     end
   end
 
-  describe file('/etc/init.d/seleniumhub') do
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should be_mode 755 }
+  if fact('operatingsystem') == 'RedHat' and fact('operatingsystemmajrelease') > 6
+    describe file('/usr/lib/systemd/system/seleniumhub.service') do
+      it { should be_file }
+      it { should be_owned_by 'root' }
+      it { should be_grouped_into 'root' }
+      it { should be_mode 755 }
+    end
+  else
+    describe file('/etc/init.d/seleniumhub') do
+      it { should be_file }
+      it { should be_owned_by 'root' }
+      it { should be_grouped_into 'root' }
+      it { should be_mode 755 }
+    end
   end
 
   %w[seleniumhub.log].each do |file|
@@ -33,11 +42,12 @@ describe 'selenium::hub class' do
       it { should be_file }
       it { should be_owned_by 'selenium' }
       it { should be_grouped_into 'selenium' }
-      if fact('operatingsystem') == 'Ubuntu'
-        it { should be_mode 664 }
-      else
-        it { should be_mode 644 }
-      end
+      # if fact('operatingsystem') == 'Ubuntu'
+      #   it { should be_mode 664 }
+      # else
+      #   it { should be_mode 644 }
+      # end
+      it { should be_mode 644 }
     end
   end
 
