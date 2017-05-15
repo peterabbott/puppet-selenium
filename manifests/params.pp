@@ -18,6 +18,7 @@ class selenium::params {
   $default_hub      = 'http://localhost:4444/grid/register'
   $download_timeout = '90'
   $default_classpath = []
+  $xvfb_run         = undef
   case $::osfamily {
     'redhat': {
       case $::operatingsystemmajrelease {

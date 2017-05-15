@@ -10,6 +10,7 @@ class selenium::node(
   $hub       = $selenium::params::default_hub,
   $classpath = $selenium::params::default_classpath,
   $initsystem = $selenium::params::initsystem,
+  $xvfb_run = $selenium::params::xvfb_run,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -29,6 +30,7 @@ class selenium::node(
     java         => $selenium::java,
     classpath    => $classpath,
     initsystem   => $initsystem,
+    xvfb_run     => $xvfb_run,
   } ->
   anchor { 'selenium::node::end': }
 }

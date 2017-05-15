@@ -12,6 +12,7 @@ define selenium::config(
   $jar_name     = $selenium::jar_name,
   $classpath    = $selenium::params::default_classpath,
   $initsystem   = $selenium::params::initsystem,
+  $xvfb_run     = $selenium::params::xvfb_run,
 ) {
   validate_string($display)
   validate_string($user)
@@ -22,6 +23,7 @@ define selenium::config(
   validate_string($jar_name)
   validate_array($classpath)
   validate_re($initsystem, '^(systemd|init.d)$')
+  validate_string($xvfb_run)
 
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
@@ -49,6 +51,7 @@ define selenium::config(
         group   => 'root',
         mode    => '0755',
         content => template("${module_name}/systemd/selenium.erb"),
+        notify => Service[$prog],
       }
 
       file { "${prog}-config":
@@ -70,6 +73,7 @@ define selenium::config(
         group   => 'root',
         mode    => '0755',
         content => template("${module_name}/init.d/${template_name}.selenium.erb"),
+        notify => Service[$prog],
       }
     }
   }
