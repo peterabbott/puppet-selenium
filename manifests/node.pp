@@ -31,6 +31,7 @@ class selenium::node(
     classpath    => $classpath,
     initsystem   => $initsystem,
     xvfb_run     => $xvfb_run,
+    jvm_opts
   } ->
   anchor { 'selenium::node::end': }
 }

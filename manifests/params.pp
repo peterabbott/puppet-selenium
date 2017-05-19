@@ -10,15 +10,16 @@ class selenium::params {
   $group            = $user
   $manage_group     = true
   $install_root     = '/opt/selenium'
-  $server_options   = '-Dwebdriver.enable.native.events=1'
+  $server_options   = ''
   $hub_options      = '-role hub'
-  $node_options     = "${server_options} -role node"
+  $node_options     = "-role node"
   $java             = 'java'
   $version          = '2.45.0'
   $default_hub      = 'http://localhost:4444/grid/register'
   $download_timeout = '90'
   $default_classpath = []
   $xvfb_run         = undef
+  $jvm_opts         = '-Xmx512m -Dwebdriver.enable.native.events=1'
   case $::osfamily {
     'redhat': {
       case $::operatingsystemmajrelease {

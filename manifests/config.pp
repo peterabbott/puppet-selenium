@@ -13,6 +13,7 @@ define selenium::config(
   $classpath    = $selenium::params::default_classpath,
   $initsystem   = $selenium::params::initsystem,
   $xvfb_run     = $selenium::params::xvfb_run,
+  $jvm_opts     = $selenium::params::jvm_opts,
 ) {
   validate_string($display)
   validate_string($user)
