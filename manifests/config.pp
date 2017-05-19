@@ -14,6 +14,7 @@ define selenium::config(
   $initsystem   = $selenium::params::initsystem,
   $xvfb_run     = $selenium::params::xvfb_run,
   $jvm_opts     = $selenium::params::jvm_opts,
+  $driver_opts  = $selenium::params::driver_opts,
 ) {
   validate_string($display)
   validate_string($user)
@@ -25,6 +26,8 @@ define selenium::config(
   validate_array($classpath)
   validate_re($initsystem, '^(systemd|init.d)$')
   validate_string($xvfb_run)
+  validate_string($driver_opts)
+  validate_string($jvm_opts)
 
   # prog is the 'name' of the init.d script.
   $prog = "selenium${name}"
@@ -45,6 +48,16 @@ define selenium::config(
 
   case $initsystem {
     'systemd' : {
+      # todo: apply to init.d case
+      $conf_options = $selenium::version ? {
+        /(1|2).*/ => "${driver_opts} ${options}",
+        default => $options,
+      }
+      $exec_options = $selenium::version ? {
+        /(1|2).*/ => $jvm_opts,
+        default => "${driver_opts} ${jvm_opts}",
+      }
+
       file { $prog:
         ensure  => 'file',
         path    => "/usr/lib/systemd/system/${prog}.service",

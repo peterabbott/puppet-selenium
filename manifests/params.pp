@@ -19,7 +19,8 @@ class selenium::params {
   $download_timeout = '90'
   $default_classpath = []
   $xvfb_run         = undef
-  $jvm_opts         = '-Xmx512m -Dwebdriver.enable.native.events=1'
+  $driver_opts      = '-Dwebdriver.enable.native.events=1'
+  $jvm_opts         = ''
   case $::osfamily {
     'redhat': {
       case $::operatingsystemmajrelease {

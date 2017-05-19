@@ -11,6 +11,8 @@ class selenium::node(
   $classpath = $selenium::params::default_classpath,
   $initsystem = $selenium::params::initsystem,
   $xvfb_run = $selenium::params::xvfb_run,
+  $jvm_opts    = $selenium::params::jvm_opts,
+  $driver_opts = $selenium::params::driver_opts,
 ) inherits selenium::params {
   validate_string($display)
   validate_string($options)
@@ -31,7 +33,8 @@ class selenium::node(
     classpath    => $classpath,
     initsystem   => $initsystem,
     xvfb_run     => $xvfb_run,
-    jvm_opts
+    jvm_opts     => $jvm_opts,
+    driver_opts  => $driver_opts,
   } ->
   anchor { 'selenium::node::end': }
 }
