@@ -6,7 +6,7 @@ After=network.target network-online.target
 [Service]
 EnvironmentFile=/etc/<%= @prog %>.conf
 ExecStart=<% if @xvfb_run -%><%= @xvfb_run %> <% end -%><%= @java %> <%= @exec_options %> <%= @exec_command %> $SELENIUM_SERVER_ARGS
-KillMode=process
+KillMode=control-group
 User=<%= @user %>
 
 [Install]
