@@ -50,11 +50,11 @@ define selenium::config(
     'systemd' : {
       # todo: apply to init.d case
       $conf_options = $selenium::version ? {
-        /(1|2).*/ => "${driver_opts} ${options}",
+        /^(1|2).*/ => "${driver_opts} ${options}",
         default => $options,
       }
       $exec_options = $selenium::version ? {
-        /(1|2).*/ => $jvm_opts,
+        /^(1|2).*/ => $jvm_opts,
         default => "${driver_opts} ${jvm_opts}",
       }
 
@@ -75,7 +75,14 @@ define selenium::config(
         group   => 'root',
         mode    => '0755',
         content => template("${module_name}/systemd/conf.erb"),
-        notify  => Service[$prog],
+        notify => [ Service[$prog], Exec["${$prog} Refresh systemd"] ]
+      }
+
+      exec {"${$prog} Referesh systemd":
+        path        => ['/bin','/sbin'],
+        command     => 'systemctl daemon-reload',
+        refreshonly => true,
+        notify => Service[$prog],
       }
     }
     default  : {
