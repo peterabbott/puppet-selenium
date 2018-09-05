@@ -65,7 +65,7 @@ define selenium::config(
         group   => 'root',
         mode    => '0755',
         content => template("${module_name}/systemd/selenium.erb"),
-        notify => Service[$prog],
+        notify => [ Service[$prog], Exec["${$prog} Refresh systemd"] ]
       }
 
       file { "${prog}-config":
@@ -78,7 +78,7 @@ define selenium::config(
         notify => [ Service[$prog], Exec["${$prog} Refresh systemd"] ]
       }
 
-      exec {"${$prog} Referesh systemd":
+      exec {"${$prog} Refresh systemd":
         path        => ['/bin','/sbin'],
         command     => 'systemctl daemon-reload',
         refreshonly => true,
